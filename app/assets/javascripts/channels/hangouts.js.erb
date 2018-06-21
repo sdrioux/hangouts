@@ -1,5 +1,26 @@
-// app/assets/javascripts/channels/chatrooms.js
-
 //= require cable
 //= require_self
 //= require_tree .
+
+function subscribe(hangoutId) {
+  if (hangoutId) {
+    App.messages = App.cable.subscriptions.create({
+      channel: 'HangoutsChannel',
+      hangout_id: hangoutId
+    }, {
+      received: function(data) {
+        $("#messages").removeClass('hidden');
+
+        return $('#messages').append(this._renderMessage(data));
+      },
+
+      _renderMessage: function(data) {
+        var message =  "<p><div> <b>" + data.sender + ": </b>" + data.body + "</div>";
+
+        message += "<div class='timestamp'>" + data.timestamp + "</div></p>";
+
+        return message;
+      }
+    });
+  }
+}

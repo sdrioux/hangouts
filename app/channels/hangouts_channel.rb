@@ -1,7 +1,6 @@
 class HangoutsChannel < ApplicationCable::Channel
   def subscribed
-    puts params
-    hangout = Hangout.find(params[:room])
+    hangout = Hangout.find(params[:hangout_id])
 
     stream_for hangout
   end
