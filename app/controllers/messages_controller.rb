@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
         message.hangout,
         body: message.body,
         sender: message.sender.email,
-        timestamp: message.timestamp
+        timestamp: message.timestamp,
+        hangout_id: message.hangout_id
       )
 
       head :ok

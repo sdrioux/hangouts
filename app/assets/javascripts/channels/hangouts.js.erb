@@ -3,15 +3,19 @@
 //= require_tree .
 
 function subscribe(hangoutId) {
-  if (hangoutId) {
+    // need to manually prevent duplicate subscriptions.
+  if (hangoutId && existingSubscription(hangoutId) === false) {
     App.messages = App.cable.subscriptions.create({
       channel: 'HangoutsChannel',
       hangout_id: hangoutId
     }, {
       received: function(data) {
-        $("#messages").removeClass('hidden');
+        // prevent leaking messages from other subscriptions
+        if(hangoutId === data.hangout_id) {
+          $("#messages").removeClass('hidden');
 
-        return $('#messages').append(this._renderMessage(data));
+          return $('#messages').append(this._renderMessage(data));
+        }
       },
 
       _renderMessage: function(data) {
@@ -23,4 +27,10 @@ function subscribe(hangoutId) {
       }
     });
   }
+}
+
+function existingSubscription(hangoutId) {
+  return App.cable.subscriptions.subscriptions.some(function(subscription) {
+    return subscription.identifier === `{"channel":"HangoutsChannel","hangout_id":${hangoutId}}`;
+  });
 }
