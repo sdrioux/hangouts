@@ -6,9 +6,9 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   },
 
   renderMessage: function(data) {
-    const message =  "<div><p> <b>" + data.sender + ": </b>" + data.body + "</p></div>";
+    let message =  "<div><p> <b>" + data.sender + ": </b>" + data.body + "</p></div>";
 
-    message.push("<div>" + data.timestamp + "</div>");
+    message += "<div>" + data.timestamp + "</div>";
 
     return message;
   }
