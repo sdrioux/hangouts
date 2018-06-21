@@ -4,13 +4,15 @@ class MessagesController < ApplicationController
     message.sender = current_user
     if message.save
 
-      HangoutsChannel.broadcast_to(
-        message.hangout,
-        body: message.body,
-        sender: message.sender.email,
-        timestamp: message.timestamp,
-        hangout_id: message.hangout_id
-      )
+      ActionCable.server.broadcast(
+        "hangouts_#{message.hangout_id}",
+        hangout_id: message.hangout_id,
+        message: {
+          body: message.body,
+          sender: message.sender.email,
+          timestamp: message.timestamp,
+          hangout_id: message.hangout_id
+      })
 
       head :ok
     else

@@ -1,7 +1,14 @@
 class HangoutsChannel < ApplicationCable::Channel
   def subscribed
-    hangout = Hangout.find(params[:hangout_id])
+    stream_from "hangouts_#{params[:hangout_id]}"
+  end
 
-    stream_for hangout
+  def typing(data)
+    ActionCable.server.broadcast(
+      "hangouts_#{params[:hangout_id]}",
+      typing: true,
+      hangout_id: params[:hangout_id],
+      user_id: data['user_id']
+    )
   end
 end
