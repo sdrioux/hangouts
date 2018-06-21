@@ -17,9 +17,3 @@
 //= require jquery_ujs
 //= require_tree .
 //= require_tree ./channels
-
-$(document).ready(function() {
-    $("body").bind("ajax:complete", function(event,xhr,status){
-      $('#message_body').val('');
-    });
-});

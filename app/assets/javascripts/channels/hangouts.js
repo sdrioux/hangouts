@@ -12,7 +12,7 @@ function subscribe(hangoutId) {
       received: function(data) {
         // prevent leaking messages from other subscriptions
         if(hangoutId === data.hangout_id) {
-          $("#messages").removeClass('hidden');
+          $('#message_body').val('');
 
           return $('#messages').append(this._renderMessage(data));
         }

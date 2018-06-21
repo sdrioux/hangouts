@@ -1,1 +1,9 @@
-<td><%= link_to user.email, hangout_path(user_id: user.id) %></td>
+<td>
+  <%= link_to user.email, hangout_path(user_id: user.id) %>
+</td>
+<td>
+  Messages Sent: <%= sent.to_i %>
+</td>
+<td>
+  Messages Received: <%= received.to_i %>
+</td>
