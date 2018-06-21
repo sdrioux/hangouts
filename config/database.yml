@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: chatting_service_production
-  username: chatting_service
-  password: <%= ENV['CHATTING_SERVICE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
