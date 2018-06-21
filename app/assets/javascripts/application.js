@@ -20,7 +20,6 @@
 
 $(document).ready(function() {
     $("body").bind("ajax:complete", function(event,xhr,status){
-        console.log("HELLO THERE");
-        $('#message_body').val('');
+      $('#message_body').val('');
     });
 });
