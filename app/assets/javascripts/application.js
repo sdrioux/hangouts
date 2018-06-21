@@ -13,4 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require jquery_ujs
 //= require_tree .
+//= require_tree ./channels
+
+$(document).ready(function() {
+    $("body").bind("ajax:complete", function(event,xhr,status){
+        console.log("HELLO THERE");
+        $('#message_body').val('');
+    });
+});
