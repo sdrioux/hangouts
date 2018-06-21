@@ -69,4 +69,10 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
+  RSpec.configure do |config|
+    config.mock_with :mocha
+  end
 end

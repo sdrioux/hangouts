@@ -13,8 +13,10 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <% if alert %>
+      <div id="error-message" class="alert alert-danger"><%= alert %></div>
+    <% end %>
 
     <%= yield %>
   </body>

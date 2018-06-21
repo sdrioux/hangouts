@@ -14,7 +14,8 @@ class MessagesController < ApplicationController
 
       head :ok
     else
-      redirect_to hangouts_path
+      flash.alert = message.errors.full_messages.join(',')
+      redirect_back(fallback_location: hangout_path(user_id: message_params[:receiver_id]))
     end
   end
 
