@@ -7,10 +7,11 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id
   has_many :received_messages, class_name: 'Message', foreign_key: :receiver_id
 
-  has_many :connections
-  has_many :hangouts, through: :connections
-
   def messages
     sent_messages.or(received_messages)
+  end
+
+  def hangouts
+    Hangout.where(first_user: self).or(Hangout.where(second_user: self))
   end
 end

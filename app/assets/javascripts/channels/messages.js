@@ -1,4 +1,6 @@
-App.messages = App.cable.subscriptions.create('MessagesChannel', {
+App.messages = App.cable.subscriptions.create({
+    channel: 'MessagesChannel'
+  }, {
   received: function(data) {
     $("#messages").removeClass('hidden');
 
@@ -6,9 +8,9 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   },
 
   renderMessage: function(data) {
-    let message =  "<div><p> <b>" + data.sender + ": </b>" + data.body + "</p></div>";
+    var message =  "<p><div> <b>" + data.sender + ": </b>" + data.body + "</div>";
 
-    message += "<div class='timestamp'>" + data.timestamp + "</div>";
+    message += "<div class='timestamp'>" + data.timestamp + "</div></p>";
 
     return message;
   }

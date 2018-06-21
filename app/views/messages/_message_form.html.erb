@@ -3,5 +3,6 @@
   <%= f.text_area :body, class: "form-control", data: { textarea: "message"} %>
 
   <%= f.hidden_field :hangout_id, value: hangout.id %>
+    <%= f.hidden_field :receiver_id, value: receiver.id %>
   <%= f.submit "send", class: "btn btn-primary", data: { send: "message" } %>
 <% end %>
