@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <h3>Users</h3>
+    <% if @users.empty? %>
+      <div><b>No other users for you to talk to :(</b></div>
+    <% end %>
     <div class="column">
       <table class="table">
         <tbody>

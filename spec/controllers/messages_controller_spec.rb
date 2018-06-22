@@ -35,13 +35,15 @@ describe MessagesController do
           receiver_id: receiver.id
         }
 
-        HangoutsChannel.expects(:broadcast_to).with(
-          hangout,
-          body: 'Hello there.',
-          sender: 'user_3@gmail.com',
-          timestamp: 'Aug 17, 1988 03:15:00 AM',
-          hangout_id: hangout.id
-        )
+        ActionCable.server.expects(:broadcast).with(
+          "hangouts_#{hangout.id}",
+          hangout_id: hangout.id,
+          message: {
+            body: 'Hello there.',
+            sender: 'user_3@gmail.com',
+            timestamp: 'Aug 17, 1988 03:15:00 AM',
+            hangout_id: hangout.id
+        })
 
         post :create, params: { message: message_params }
       end
