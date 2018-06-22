@@ -15,6 +15,8 @@ rails s
 
 # Todo
 Scale - Paginate messages, only showing most recent, and allowing user to infinite scroll to see ones in the past.
+
 Search - Allow users to look for old messages.
+
 Currently POSTing new messages through REST.  Consider moving the create to WebSockets as well.
 
