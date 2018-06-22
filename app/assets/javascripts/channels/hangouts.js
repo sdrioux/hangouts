@@ -56,9 +56,12 @@ function subscribe(data) {
       }
     });
 
-    $("body").on("keypress", ".message-body", function(e) {
+    // Ran into an area when using text-area field type.  Event would be removed after form submission.
+    $("body").on("keydown", ".message-body", function(e) {
       if(e.keyCode === 13) {
+        e.preventDefault();
         $('form#new_message').submit();
+        return false;
       }
       App.messages.typing();
     });
