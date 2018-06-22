@@ -56,7 +56,10 @@ function subscribe(data) {
       }
     });
 
-    $("body").on("keypress", ".message-body", function() {
+    $("body").on("keypress", ".message-body", function(e) {
+      if(e.keyCode === 13) {
+        $('form#new_message').submit();
+      }
       App.messages.typing();
     });
   }
