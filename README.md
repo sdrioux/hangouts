@@ -21,3 +21,5 @@ Search - Allow users to look for old messages.
 Currently POSTing new messages through REST.  Consider moving the create to WebSockets as well.
 
 Delete - Delete recently posted messages, and have other client remove the message from the screen. 
+
+Currently limited to two users talking to each other.  Consider allowing multiple users.
